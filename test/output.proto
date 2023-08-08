@@ -1,0 +1,35 @@
+syntax = "proto3";
+
+message ChatCompletionRequest {
+  string model = 1;
+  repeated ChatCompletionMessage messages = 2;
+  int32 max_tokens = 3;
+  float temperature = 4;
+  float top_p = 5;
+  int32 n = 6;
+  bool stream = 7;
+  repeated string stop = 8;
+  float presence_penalty = 9;
+  float frequency_penalty = 10;
+  map<string, int32> logit_bias = 11;
+  string user = 12;
+  repeated FunctionDefinition functions = 13;
+  bytes function_call = 14;
+}
+
+message ChatCompletionMessage {
+  string role = 1;
+  string content = 2;
+  string name = 3;
+}
+
+message FunctionCall {
+  string name = 1;
+  string arguments = 2;
+}
+
+message FunctionDefinition {
+  string name = 1;
+  string description = 2;
+  bytes parameters = 3;
+}
